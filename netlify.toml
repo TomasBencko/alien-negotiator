@@ -1,0 +1,16 @@
+[build]
+  command = "ng build"
+  publish = "dist/alien-negotiator"
+  functions = "netlify/functions"
+
+[dev]
+  command = "ng serve"
+  targetPort = 4200
+  port = 8888
+  publish = "dist/alien-negotiator"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/proxy"
+  status = 200
+  force = true

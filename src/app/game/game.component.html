@@ -1,1 +1,14 @@
-<p>game works!</p>
+
+<h1>OpenAI API test</h1>
+
+<h5>User:</h5>
+<textarea name="" id="" cols="30" rows="10"
+  [(ngModel)]="inputMessage"
+></textarea>
+
+<br />
+
+<button (click)="testAPI()">Test API</button>
+
+<h5>Zoglorp:</h5>
+<p>{{ outputMessage }}</p>
