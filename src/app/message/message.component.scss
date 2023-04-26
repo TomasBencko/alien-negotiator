@@ -1,8 +1,17 @@
 .message {
+  display: flex;
   padding: 8px 16px;
   margin-bottom: 8px;
   max-width: 70%;
+  // min-width: 70%; // Custom edit
   border-radius: 16px;
+}
+
+.message:not(.user-message) {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #f0f0f0;
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
 }
 
 .user-message {
@@ -10,6 +19,7 @@
   color: white;
   align-self: flex-end;
   border-bottom-right-radius: 0;
+  // float: right; // Custom edit
 }
 
 .message-content {
