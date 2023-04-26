@@ -1,9 +1,9 @@
 .message-input-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start; // Custom edit
   padding: 8px;
-  background-color: #f0f0f0;
+  // background-color: #f0f0f0;
   box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.1);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -14,5 +14,28 @@
 }
 
 .send-button {
-  min-width: 80px;
+  min-width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #2196f3;
+  color: white;
+
+  // Custom edit
+  border: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #1976d2;
+  }
+  
+  mat-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    line-height: 30px;
+  }
 }
