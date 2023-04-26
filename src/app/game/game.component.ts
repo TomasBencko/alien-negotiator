@@ -16,7 +16,6 @@ export class GameComponent {
   async testAPI() {
     const playerMessage = this.inputMessage;
     const response = await this.gameService.sendMessageToAI(playerMessage);
-    this.outputMessage = response.message
-    console.log(response);
+    this.outputMessage = response.message;
   }
 }

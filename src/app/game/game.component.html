@@ -1,5 +1,5 @@
 
-<h1>OpenAI API test</h1>
+<!-- <h1>OpenAI API test</h1>
 
 <h5>User:</h5>
 <textarea name="" id="" cols="30" rows="10"
@@ -11,4 +11,28 @@
 <button (click)="testAPI()">Test API</button>
 
 <h5>Zoglorp:</h5>
-<p>{{ outputMessage }}</p>
+<p>{{ outputMessage }}</p> -->
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Chat with </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="message-feed">
+    <div class="message" *ngFor="let msg of [{isUser: false, text: 'message 1'}, {isUser: true, text: 'message 2'}]">
+      <div
+        class="message-text"
+        [ngClass]="{ 'user-message': msg.isUser, 'alien-message': !msg.isUser }"
+      >
+        {{ msg.text }}
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-form-field class="message-input" appearance="outline">
+      <mat-label>Enter your message</mat-label>
+      <input matInput />
+      <!-- <input matInput [(ngModel)]="userMessage" (keyup.enter)="sendMessage()" /> -->
+    </mat-form-field>
+    <button mat-raised-button color="primary" >Send</button>
+  </mat-card-actions>
+</mat-card>
