@@ -7,6 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class MessageComponent {
   @Input() isUserMessage!: boolean;
-  // isUserMessage = true; // This will be set dynamically later
-  messageText = 'Sample message'; // This will be replaced with actual message text later
+  @Input() messageText!: string;
 }

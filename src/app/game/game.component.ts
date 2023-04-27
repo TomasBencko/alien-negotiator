@@ -7,16 +7,14 @@ import { GameService } from '../game.service';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent {
+  messages: { isUserMessage: boolean; text: string }[] = [];
 
   constructor(private gameService: GameService) {}
 
-  inputMessage: string = 'Hello, Zoglorp! How are you today?';
-  outputMessage: string = '';
+  async testAPI(inputMessage: string) {
+    this.messages.push({ isUserMessage: true, text: inputMessage });
 
-  async testAPI() {
-    const playerMessage = this.inputMessage;
-    const response = await this.gameService.sendMessageToAI(playerMessage);
-    this.outputMessage = response.message
-    console.log(response);
+    const response = await this.gameService.sendMessageToAI(inputMessage);
+    this.messages.push({ isUserMessage: false, text: response.message });
   }
 }

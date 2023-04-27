@@ -7,21 +7,7 @@
   </div>
   <div class="message-feed">
     <div class="space-filler"></div>
-    <app-message [isUserMessage]="true"></app-message>
-    <app-message [isUserMessage]="false"></app-message>
-    <app-message [isUserMessage]="true"></app-message>
-    <app-message [isUserMessage]="false"></app-message>
-    <app-message [isUserMessage]="true"></app-message>
-    <app-message [isUserMessage]="false"></app-message>
-    <app-message [isUserMessage]="true"></app-message>
-    <app-message [isUserMessage]="false"></app-message>
-    <app-message [isUserMessage]="true"></app-message>
-    <app-message [isUserMessage]="false"></app-message>
-    <app-message [isUserMessage]="true"></app-message>
-    <app-message [isUserMessage]="false"></app-message>
-    <app-message [isUserMessage]="true"></app-message>
-    <app-message [isUserMessage]="false"></app-message>
-    <app-message [isUserMessage]="true"></app-message>
+    <app-message *ngFor="let message of messages" [isUserMessage]="message.isUserMessage" [messageText]="message.text"></app-message>
   </div>
-  <app-message-input></app-message-input>
+  <app-message-input (sendMessage)="testAPI($event)"></app-message-input>
 </div>

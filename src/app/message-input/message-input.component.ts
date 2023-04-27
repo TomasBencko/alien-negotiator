@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-message-input',
@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./message-input.component.scss']
 })
 export class MessageInputComponent {
+  @Output() sendMessage = new EventEmitter<string>();
+  inputMessage = '';
 
+  onSendMessage() {
+    this.sendMessage.emit(this.inputMessage);
+    this.inputMessage = '';
+  }
 }
