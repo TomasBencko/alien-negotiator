@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-message',
@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MessageComponent implements OnInit {
   @Input() isUserMessage!: boolean;
   @Input() messageText!: string;
+  @Output() scrollToBottomEvent = new EventEmitter<void>();
   displayedMessage = '';
 
   ngOnInit() {
@@ -22,7 +23,8 @@ export class MessageComponent implements OnInit {
     const words = this.messageText.split(' ');
     for (const word of words) {
       this.displayedMessage += word + ' ';
-      await this.delay(150); // Adjust this value to control the speed of the animation
+      this.scrollToBottomEvent.emit();
+      await this.delay(266); // Adjust this value to control the speed of the animation
     }
   }
 
