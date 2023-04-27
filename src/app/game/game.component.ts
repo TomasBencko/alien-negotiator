@@ -42,7 +42,7 @@ export class GameComponent {
     this.ngZone.runOutsideAngular(() => {
       // setTimeout(() => {
         try {
-          this.renderer.setStyle(this.header.nativeElement, 'height', '30%');
+          this.renderer.setStyle(this.header.nativeElement, 'min-height', '30vh');
           this.messageFeed.nativeElement.scrollTop = this.messageFeed.nativeElement.scrollHeight;
         } catch (err) {}
       // }, 0);
@@ -54,11 +54,11 @@ export class GameComponent {
     const scrollTop = this.messageFeed.nativeElement.scrollTop;
     if (scrollTop > this.lastScrollTop) {
       // Scrolling down
-      this.renderer.setStyle(this.header.nativeElement, 'height', '30%');
+      this.renderer.setStyle(this.header.nativeElement, 'min-height', '30vh');
       this.renderer.removeClass(this.header.nativeElement, 'no-gradient');
     } else {
       // Scrolling up
-      this.renderer.setStyle(this.header.nativeElement, 'height', '15%');
+      this.renderer.setStyle(this.header.nativeElement, 'min-height', '15vh');
       if (scrollTop === 0) {
         this.renderer.addClass(this.header.nativeElement, 'no-gradient');
       } else {
