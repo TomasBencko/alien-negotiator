@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { GameService } from '../game.service';
 
 @Component({
@@ -6,7 +6,9 @@ import { GameService } from '../game.service';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent {
+export class GameComponent implements AfterViewChecked {
+  @ViewChild('messageFeed') private messageFeed!: ElementRef;
+
   messages: { isUserMessage: boolean; text: string }[] = [];
   isTyping: boolean = false;
 
@@ -19,10 +21,23 @@ export class GameComponent {
 
     setTimeout(() => {
       this.isTyping = true;
+      this.scrollToBottom();
     }, 500);
 
     const response = await responsePromise;
     this.isTyping = false;
     this.messages.push({ isUserMessage: false, text: response.message });
+    this.scrollToBottom();
+  }
+
+  ngAfterViewChecked() {
+    console.log(`ngAfterViewChecked was called`)
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    try {
+      this.messageFeed.nativeElement.scrollTop = this.messageFeed.nativeElement.scrollHeight;
+    } catch (err) {}
   }
 }

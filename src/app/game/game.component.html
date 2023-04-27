@@ -5,7 +5,7 @@
       <img src="assets/icons/icon-192x192.png" alt="Alien" class="alien-image" />
     </div>
   </div>
-  <div class="message-feed">
+  <div class="message-feed" #messageFeed>
     <div class="space-filler"></div>
     <app-message *ngFor="let message of messages" [isUserMessage]="message.isUserMessage" [messageText]="message.text"></app-message>
     <div class="typing-indicator" *ngIf="isTyping">
