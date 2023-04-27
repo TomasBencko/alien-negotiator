@@ -8,6 +8,11 @@
   <div class="message-feed">
     <div class="space-filler"></div>
     <app-message *ngFor="let message of messages" [isUserMessage]="message.isUserMessage" [messageText]="message.text"></app-message>
+    <div class="typing-indicator" *ngIf="isTyping">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
   </div>
   <app-message-input (sendMessage)="testAPI($event)"></app-message-input>
 </div>
