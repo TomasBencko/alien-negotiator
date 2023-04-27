@@ -12,6 +12,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 1rem 0;
+    transition: height 0.3s ease-in-out;
 
     &:after {
       content: '';
@@ -22,6 +23,10 @@
       height: 40px;
       transform: translateY(100%);
       background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(48, 48, 48, 1));
+    }
+
+    &.no-gradient:after {
+      opacity: 0;
     }
 
     h1 {
@@ -48,7 +53,7 @@
 
     .space-filler {
       flex-grow: 1;
-      min-height: 2rem;
+      min-height: 0; //2rem;
     }
 
     app-message:last-child::ng-deep .message {

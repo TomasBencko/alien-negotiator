@@ -23,7 +23,7 @@ export class MessageComponent implements OnInit {
     const words = this.messageText.split(' ');
     for (const word of words) {
       this.displayedMessage += word + ' ';
-      this.scrollToBottomEvent.emit();
+      setTimeout(() => this.scrollToBottomEvent.emit(), 0);
       await this.delay(266); // Adjust this value to control the speed of the animation
     }
   }

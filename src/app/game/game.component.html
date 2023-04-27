@@ -1,16 +1,36 @@
 <div class="game-container">
-  <div class="header">
+  <div class="header" #header>
     <h1>Alien Negotiator</h1>
     <div class="avatar-wrapper">
       <img src="assets/icons/icon-192x192.png" alt="Alien" class="alien-image" />
     </div>
   </div>
-  <div class="message-feed" #messageFeed>
+  <div class="message-feed" #messageFeed (scroll)="onScroll()">
     <div class="space-filler"></div>
     <app-message *ngFor="let message of messages"
-      [isUserMessage]="message.isUserMessage"
-      [messageText]="message.text"
-      (scrollToBottomEvent)="scrollToBottom()"
+                 [isUserMessage]="message.isUserMessage"
+                 [messageText]="message.text"
+                 (scrollToBottomEvent)="scrollToBottom()"
+    ></app-message>
+    <app-message *ngFor="let message of messages"
+                 [isUserMessage]="message.isUserMessage"
+                 [messageText]="message.text"
+                 (scrollToBottomEvent)="scrollToBottom()"
+    ></app-message>
+    <app-message *ngFor="let message of messages"
+                 [isUserMessage]="message.isUserMessage"
+                 [messageText]="message.text"
+                 (scrollToBottomEvent)="scrollToBottom()"
+    ></app-message>
+    <app-message *ngFor="let message of messages"
+                 [isUserMessage]="message.isUserMessage"
+                 [messageText]="message.text"
+                 (scrollToBottomEvent)="scrollToBottom()"
+    ></app-message>
+    <app-message *ngFor="let message of messages"
+                 [isUserMessage]="message.isUserMessage"
+                 [messageText]="message.text"
+                 (scrollToBottomEvent)="scrollToBottom()"
     ></app-message>
 
     <div class="typing-indicator" *ngIf="isTyping">
