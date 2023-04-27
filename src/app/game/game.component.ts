@@ -51,13 +51,14 @@ export class GameComponent {
 
   // Add this function
   onScroll() {
-    const scrollTop = this.messageFeed.nativeElement.scrollTop;
-    if (scrollTop > this.lastScrollTop) {
-      // Scrolling down
+    const messageFeedElement = this.messageFeed.nativeElement;
+    const scrollTop = messageFeedElement.scrollTop;
+    const scrollOffset = messageFeedElement.scrollHeight - messageFeedElement.scrollTop - messageFeedElement.offsetHeight;
+
+    if (scrollOffset <= 100) {
       this.renderer.setStyle(this.header.nativeElement, 'min-height', '30vh');
       this.renderer.removeClass(this.header.nativeElement, 'no-gradient');
     } else {
-      // Scrolling up
       this.renderer.setStyle(this.header.nativeElement, 'min-height', '15vh');
       if (scrollTop === 0) {
         this.renderer.addClass(this.header.nativeElement, 'no-gradient');
