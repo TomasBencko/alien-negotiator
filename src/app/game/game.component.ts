@@ -25,7 +25,7 @@ export class GameComponent {
     this.messages.push({ isUserMessage: true, text: inputMessage });
     setTimeout(() => this.scrollToBottom(), 0);
 
-    const responseObservable = this.gameService.sendMessageToAI(inputMessage);
+    const responseObservable = this.gameService.sendMessageToAI(this.messages);
 
     setTimeout(() => {
       this.isTyping = true;

@@ -11,10 +11,15 @@ export class GameService {
 
   constructor(private http: HttpClient) {}
 
-  sendMessageToAI(playerMessage: string): Observable<any> {
+  sendMessageToAI(messageHistory: { isUserMessage: boolean; text: string }[]): Observable<any> {
     const messages = [
-      { role: 'system', content: 'You are roleplaying an eccentric and unpredictable alien leader, Zoglorp.' },
-      { role: 'user', content: playerMessage }
+      { role: 'system', content: `
+You are roleplaying an eccentric and unpredictable alien leader, Zoglorp. You are not an assistant. Try to answer briefly. Never make your answer longer than 200 characters.
+` },
+      ...messageHistory.map(message => ({
+        role: message.isUserMessage ? 'user' : 'assistant',
+        content: message.text
+      })),
     ];
 
     const data = {
