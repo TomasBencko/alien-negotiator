@@ -21,35 +21,45 @@ export class GameComponent {
     private ngZone: NgZone
   ) {}
 
-  async testAPI(inputMessage: string) {
+  gptRequest(inputMessage: string) {
     this.messages.push({ isUserMessage: true, text: inputMessage });
     setTimeout(() => this.scrollToBottom(), 0);
 
-    const responsePromise = this.gameService.sendMessageToAI(inputMessage);
+    const responseObservable = this.gameService.sendMessageToAI(inputMessage);
 
     setTimeout(() => {
       this.isTyping = true;
       setTimeout(() => this.scrollToBottom(), 0);
     }, 500);
 
-    const response = await responsePromise;
-    this.isTyping = false;
-    this.messages.push({ isUserMessage: false, text: response.message });
-    this.scrollToBottom();
-  }
-
-  scrollToBottom(): void {
-    this.ngZone.runOutsideAngular(() => {
-      // setTimeout(() => {
-        try {
-          this.renderer.setStyle(this.header.nativeElement, 'min-height', '30vh');
-          this.messageFeed.nativeElement.scrollTop = this.messageFeed.nativeElement.scrollHeight;
-        } catch (err) {}
-      // }, 0);
+    responseObservable.subscribe({
+      next: (response) => {
+        this.isTyping = false;
+        this.messages.push({ isUserMessage: false, text: response.message });
+        this.scrollToBottom();
+      },
+      error: (error) => {
+        console.error('Error:', error);
+        this.isTyping = false;
+        this.messages.push({
+          isUserMessage: false,
+          text: 'An error occurred. Please try again later.',
+        });
+        this.scrollToBottom();
+      }
     });
   }
 
-  // Add this function
+
+  scrollToBottom(): void {
+    this.ngZone.runOutsideAngular(() => {
+      try {
+        this.renderer.setStyle(this.header.nativeElement, 'min-height', '30vh');
+        this.messageFeed.nativeElement.scrollTop = this.messageFeed.nativeElement.scrollHeight;
+      } catch (err) {}
+    });
+  }
+
   onScroll() {
     const messageFeedElement = this.messageFeed.nativeElement;
     const scrollTop = messageFeedElement.scrollTop;

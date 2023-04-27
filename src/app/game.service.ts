@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { interval, Observable } from 'rxjs';
+import { startWith, switchMap, take, takeWhile, tap, finalize } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +9,14 @@ import { firstValueFrom } from 'rxjs';
 export class GameService {
   private apiUrl = '/.netlify/functions/proxy';
 
-  constructor(private http: HttpClient) { }
-  
+  constructor(private http: HttpClient) {}
 
-  async sendMessageToAI(playerMessage: string): Promise<any> {
-
+  sendMessageToAI(playerMessage: string): Observable<any> {
     const messages = [
-      {"role": "system", "content": "You are roleplaying an eccentric and unpredictable alien leader, Zoglorp."},
-      {"role": "user", "content": playerMessage}
+      { role: 'system', content: 'You are roleplaying an eccentric and unpredictable alien leader, Zoglorp.' },
+      { role: 'user', content: playerMessage }
     ];
-    
+
     const data = {
       messages,
       max_tokens: 150,
@@ -29,12 +28,31 @@ export class GameService {
       presence_penalty: 0
     };
 
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const response$ = this.http.post(this.apiUrl, data, { headers });
-    
-    // Get the first value from observable and complete it
-    const response = await firstValueFrom(response$);
+    return this.pollForResult(data);
+  }
 
-    return response;
+  private pollForResult(requestBody: any): Observable<any> {
+    const pollInterval = 9900; // Poll every 9.9 seconds
+    const maxAttempts = 3;
+    let attemptNumber = 1;
+
+    return interval(pollInterval).pipe(
+      startWith(0),
+      take(maxAttempts),
+      tap(() => console.log(`Attempt number: ${attemptNumber++}`)),
+      switchMap(() =>
+        this.http.post(this.apiUrl, requestBody, {
+          headers: new HttpHeaders().set('Content-Type', 'application/json')
+        })
+      ), // @ts-ignore
+      takeWhile((response) => !response.message, true),
+      finalize(() => {
+        if (attemptNumber > maxAttempts) {
+          console.log('All attempts were unsuccessful');
+        } else {
+          console.log(`Attempt number ${attemptNumber - 1} was successful`);
+        }
+      })
+    );
   }
 }

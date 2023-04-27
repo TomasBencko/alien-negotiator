@@ -24,7 +24,7 @@ export class MessageComponent implements OnInit {
     for (const word of words) {
       this.displayedMessage += word + ' ';
       setTimeout(() => this.scrollToBottomEvent.emit(), 0);
-      await this.delay(266); // Adjust this value to control the speed of the animation
+      await this.delay(150); // Adjust this value to control the speed of the animation
     }
   }
 
