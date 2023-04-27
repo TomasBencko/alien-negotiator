@@ -17,12 +17,12 @@ export class GameComponent {
 
     const responsePromise = this.gameService.sendMessageToAI(inputMessage);
 
-    this.isTyping = true;
     setTimeout(() => {
-      this.isTyping = false;
+      this.isTyping = true;
     }, 500);
 
     const response = await responsePromise;
+    this.isTyping = false;
     this.messages.push({ isUserMessage: false, text: response.message });
   }
 }
