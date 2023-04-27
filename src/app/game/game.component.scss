@@ -69,13 +69,12 @@
 
     .typing-indicator {
       display: flex;
-      justify-content: center;
       align-items: flex-end;
       margin: 5px 0;
       .dot {
         width: 6px;
         height: 6px;
-        background-color: #333;
+        background-color: #ccc; // Make the dots brighter
         border-radius: 50%;
         margin: 0 2px;
         animation: typing 1s infinite;

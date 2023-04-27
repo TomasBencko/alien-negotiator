@@ -15,14 +15,14 @@ export class GameComponent {
   async testAPI(inputMessage: string) {
     this.messages.push({ isUserMessage: true, text: inputMessage });
 
+    const responsePromise = this.gameService.sendMessageToAI(inputMessage);
+
     this.isTyping = true;
-    setTimeout(async () => {
-      const response = await this.gameService.sendMessageToAI(inputMessage);
-      this.messages.push({ isUserMessage: false, text: response.message });
+    setTimeout(() => {
       this.isTyping = false;
     }, 500);
 
-    const response = await this.gameService.sendMessageToAI(inputMessage);
+    const response = await responsePromise;
     this.messages.push({ isUserMessage: false, text: response.message });
   }
 }
