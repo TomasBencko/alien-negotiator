@@ -1,17 +1,15 @@
 <div class="game-container">
   <div class="header">
     <div class="header-content" #header>
-      <h2>Alien Negotiator</h2>
       <div class="avatar-wrapper">
-<!--        <img src="assets/00319-2610236278.png" alt="Alien" class="alien-image" />-->
-<!--        <img src="assets/00031-1378867608.png" alt="Alien" class="alien-image" />-->
-<!--        <img src="assets/00001-810876556.png" alt="Alien" class="alien-image" />-->
         <img [src]="'assets/alien/' + alienState + '.jpg'" alt="Alien" class="alien-image" />
       </div>
     </div>
   </div>
   <div class="message-feed" #messageFeed (scroll)="onScroll()">
     <div class="space-filler"></div>
+    <p class="connection-info">Connection with Zoglorp<br />initiated successfully!</p>
+<!--    <a class="debriefing-info">Click here to see the ebriefeing</a>-->
     <app-message *ngFor="let message of messages"
                  [isUserMessage]="message.isUserMessage"
                  [messageText]="message.text"
@@ -24,5 +22,7 @@
       <div class="dot"></div>
     </div>
   </div>
-  <app-message-input (sendMessage)="gptRequest($event)"></app-message-input>
+  <app-message-input #inputField class="input-field"
+    (sendMessage)="gptRequest($event)"
+  ></app-message-input>
 </div>

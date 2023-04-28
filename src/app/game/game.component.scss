@@ -11,7 +11,7 @@
     .header-content {
       background-color: #303030;
       position: relative;
-      min-height: 70vh;
+      min-height: 66vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -35,14 +35,10 @@
         opacity: 0;
       }
 
-      h2 {
-        margin: 1rem 0 0.5rem 0;
-      }
-
       .avatar-wrapper {
-        flex-grow: 1;
+        //flex-grow: 1;
         min-height: 0;
-        margin-bottom: 0.5rem;
+        margin: 1rem 1rem 0 1rem;
 
         .alien-image {
           border-radius: 50%;
@@ -63,6 +59,24 @@
     .space-filler {
       flex-grow: 1;
       min-height: 0; //2rem;
+    }
+
+    .connection-info, .debriefing-info {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 300;
+      font-size: 22px;
+      line-height: 32px;
+
+      mat-icon {
+        width: 18px;
+        height: 18px;
+        font-size: 18px;
+        line-height: 18px;
+        margin-right: 6px;
+      }
     }
 
     app-message:last-child::ng-deep .message {
@@ -98,6 +112,20 @@
       }
       .dot:nth-child(3) {
         animation-delay: 0.4s;
+      }
+    }
+  }
+
+  .input-field {
+
+    .message-input-container {
+      box-shadow: unset;
+      border-top: unset;
+    }
+
+    &.input-shadow {
+      .message-input-container {
+        box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.3);
       }
     }
   }

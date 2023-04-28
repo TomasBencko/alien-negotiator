@@ -12,7 +12,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$alien-negotiator-primary: mat.define-palette(mat.$indigo-palette);
+$alien-negotiator-primary: mat.define-palette(mat.$blue-palette);
 $alien-negotiator-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -43,6 +43,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   // background-color: mat.get-color-from-palette($alien-negotiator-primary, 'darker');
   // color: mat.get-color-from-palette($alien-negotiator-primary, default);
+}
+
+* {
+  --mdc-shape-small: 12px; // Input radius
 }
 
 

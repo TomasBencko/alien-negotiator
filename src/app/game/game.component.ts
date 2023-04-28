@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, Renderer2, NgZone } from '@angular/core';
 import { GameService } from '../game.service';
+import {MessageInputComponent} from "../message-input/message-input.component";
 
 @Component({
   selector: 'app-game',
@@ -9,6 +10,7 @@ import { GameService } from '../game.service';
 export class GameComponent {
   @ViewChild('messageFeed') private messageFeed!: ElementRef;
   @ViewChild('header') header!: ElementRef;
+  @ViewChild(MessageInputComponent, { read: ElementRef }) inputField!: ElementRef;
   lastScrollTop = 0;
   headerHeight = '30%';
 
@@ -84,11 +86,13 @@ export class GameComponent {
     const scrollTop = messageFeedElement.scrollTop;
     const scrollOffset = messageFeedElement.scrollHeight - messageFeedElement.scrollTop - messageFeedElement.offsetHeight;
 
-    if (scrollOffset <= 100) {
+    if (scrollOffset <= 1) {
       this.renderer.setStyle(this.header.nativeElement, 'min-height', '40vh');
       this.renderer.removeClass(this.header.nativeElement, 'no-gradient');
+      this.renderer.removeClass(this.inputField.nativeElement, 'input-shadow');
     } else {
       this.renderer.setStyle(this.header.nativeElement, 'min-height', '15vh');
+      this.renderer.addClass(this.inputField.nativeElement, 'input-shadow');
       if (scrollTop === 0) {
         this.renderer.addClass(this.header.nativeElement, 'no-gradient');
       } else {
