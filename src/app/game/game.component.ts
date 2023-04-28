@@ -12,8 +12,9 @@ export class GameComponent {
   lastScrollTop = 0;
   headerHeight = '30%';
 
-  messages: { isUserMessage: boolean; text: string }[] = [];
+  messages: { isUserMessage: boolean; text: string; emotion?: string }[] = [];
   isTyping: boolean = false;
+  alienState: string = 'annoyance';
 
   constructor(
     private gameService: GameService,
@@ -34,8 +35,26 @@ export class GameComponent {
 
     responseObservable.subscribe({
       next: (response) => {
+        console.log(`Received following response:`);
+        console.log(JSON.stringify(response));
+
         this.isTyping = false;
-        this.messages.push({ isUserMessage: false, text: response.message });
+
+        // let parsedResponse = null;
+        // try {
+        //   parsedResponse = JSON.parse(response.message); // .replace('\\n', '",')
+        //
+        // } catch (e) {
+        //   console.error(`Parsing response was unsuccessful`);
+        //   console.error(e);
+        // }
+        // const text = parsedResponse ? parsedResponse.text : response.message;
+        // const emotion = parsedResponse ? this.parseEmotion(parsedResponse.emotion) : 'awe';
+
+        const { text, emotion } = this.parseResponse(response.message);
+
+        this.messages.push({ isUserMessage: false, text, emotion });
+        this.alienState = emotion;
         this.scrollToBottom();
       },
       error: (error) => {
@@ -54,7 +73,7 @@ export class GameComponent {
   scrollToBottom(): void {
     this.ngZone.runOutsideAngular(() => {
       try {
-        this.renderer.setStyle(this.header.nativeElement, 'min-height', '30vh');
+        this.renderer.setStyle(this.header.nativeElement, 'min-height', '40vh');
         this.messageFeed.nativeElement.scrollTop = this.messageFeed.nativeElement.scrollHeight;
       } catch (err) {}
     });
@@ -66,7 +85,7 @@ export class GameComponent {
     const scrollOffset = messageFeedElement.scrollHeight - messageFeedElement.scrollTop - messageFeedElement.offsetHeight;
 
     if (scrollOffset <= 100) {
-      this.renderer.setStyle(this.header.nativeElement, 'min-height', '30vh');
+      this.renderer.setStyle(this.header.nativeElement, 'min-height', '40vh');
       this.renderer.removeClass(this.header.nativeElement, 'no-gradient');
     } else {
       this.renderer.setStyle(this.header.nativeElement, 'min-height', '15vh');
@@ -77,5 +96,46 @@ export class GameComponent {
       }
     }
     this.lastScrollTop = scrollTop;
+  }
+
+
+
+  parseResponse(response: string) {
+    const regex = /\[(.*?)]/;
+    const match = response.match(regex);
+    let emotion = match && match[1] ? match[1] : '';
+    emotion = this.parseEmotion(emotion);
+    const text = response.replace(/\s*\[[^\]]*]/g, '');
+
+    return { emotion, text };
+  }
+
+// Example usage:
+//   const inputString = "Hello [world]! This is a [sample] string with [text] inside square brackets.";
+//   const result = extractTextInsideBrackets(inputString);
+//   console.log(result);
+
+
+
+  parseEmotion(emotion: string) {
+
+    const availableEmotions = [
+      'serenity','joy','ecstasy','love','acceptance','trust','admiration','submission','apprehension','fear','terror',
+      'awe','distraction','surprise','amazement','disapproval','pensiveness','sadness','grief','remorse','boredom',
+      'disgust','loathing','contempt','annoyance','anger','rage','aggressiveness','interest','anticipation','vigilance',
+      'optimism'
+    ]
+
+    if (availableEmotions.includes(emotion)) return emotion;
+
+    switch (emotion.trim().toLowerCase()) {
+      case 'arrogance': emotion = 'pensiveness'; break;
+      case 'defensive': emotion = 'anger'; break;
+      case 'confident': emotion = 'pensiveness'; break;
+      case 'amusement': emotion = 'joy'; break;
+      default: emotion = 'annoyance';
+    }
+
+    return emotion;
   }
 }
