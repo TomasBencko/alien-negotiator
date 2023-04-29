@@ -4,7 +4,11 @@
     <img [src]="'assets/intro/' + introContent[currentIndex].image + '.jpg'" class="intro-image" alt="Intro image" />
   </div>
   <div class="intro-text">
-    <p *ngFor="let paragraph of introContent[currentIndex].text">{{ paragraph }}</p>
+    <ng-container *ngFor="let step of introContent; let i = index">
+      <div *ngIf="i === currentIndex" @fadeInOut>
+        <p *ngFor="let paragraph of step.text">{{ paragraph }}</p>
+      </div>
+    </ng-container>
   </div>
   <div class="button-container">
     <button mat-raised-button color="primary" class="continue-button" (click)="onNext()">

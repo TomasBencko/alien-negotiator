@@ -23,6 +23,7 @@
       justify-content: center;
       transition: min-height 0.3s ease-in-out;
       height: calc(100%);
+      margin: 0 8px;
 
       &:after {
         content: '';
@@ -75,7 +76,7 @@
       font-weight: 300;
       font-size: 22px;
       line-height: 32px;
-      margin-top: 40vh;
+      margin-top: 30vh;
 
       mat-icon {
         width: 18px;
