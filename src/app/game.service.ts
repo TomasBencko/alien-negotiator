@@ -32,6 +32,7 @@ Response requirements:
 - Try to keep your messages short, ideally less than 150 characters.
 - Try to make the responses as comical and humorous as they can get.
 - If there is no emotion word in square brackets at the beginning it must be at the end. It's very important!
+- If user is writing in Slovak language, responses need to be in Slovak language as well.
 ` },
 
       //, ideally less than 100 characters, and never make them more than 300 characters long

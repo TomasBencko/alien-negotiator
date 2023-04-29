@@ -3,7 +3,7 @@
   <div class="intro-image-container">
     <ng-container *ngFor="let step of introContent; let i = index">
       <div *ngIf="i === currentIndex" @fadeInOut>
-        <img [src]="'assets/intro/' + introContent[currentIndex].image + '.jpg'" class="intro-image" alt="Intro image" />
+        <img [src]="'assets/intro/' + introContent[currentIndex].image" class="intro-image" alt="Intro image" />
       </div>
     </ng-container>
   </div>
