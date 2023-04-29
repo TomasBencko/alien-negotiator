@@ -9,6 +9,7 @@
   <div class="message-feed" #messageFeed (scroll)="onScroll()">
     <div class="space-filler"></div>
     <p class="connection-info">Connection with Zoglorp<br />initiated successfully!</p>
+    <p class="connection-info">Spojenie so Zoglorpom<br />úspešne nadviazané!</p>
 <!--    <a class="debriefing-info">Click here to see the ebriefeing</a>-->
     <app-message *ngFor="let message of messages"
                  [isUserMessage]="message.isUserMessage"

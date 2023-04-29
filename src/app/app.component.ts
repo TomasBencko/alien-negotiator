@@ -9,6 +9,6 @@ export class AppComponent {
   title = 'alien-negotiator';
 
   refreshPage() {
-    location.reload();
+    window.location.href = '/';
   }
 }
