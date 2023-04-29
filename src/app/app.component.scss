@@ -30,15 +30,13 @@ mat-sidenav-container {
       h2 {
         flex-grow: 1;
         text-align: center;
+        letter-spacing: 2px;
       }
 
       span.fill-space {}
 
       button.mat-icon-button {
         mat-icon { }
-      }
-
-      mat-menu {
       }
     }
 
@@ -49,8 +47,10 @@ mat-sidenav-container {
 
   }
 }
-//
-//app-game {
-//  flex-grow: 1;
-//  min-height: 0;
-//}
+
+.question-instructions {
+  padding: 0 1rem;
+  margin: .5rem;
+  text-align: center;
+  line-height: 150%;
+}

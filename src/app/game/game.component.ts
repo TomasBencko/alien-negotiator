@@ -137,6 +137,12 @@ export class GameComponent {
       case 'defensive': emotion = 'anger'; break;
       case 'confident': emotion = 'pensiveness'; break;
       case 'amusement': emotion = 'joy'; break;
+      case 'sarcasm': emotion = 'contempt'; break;
+      case 'cynicism': emotion = 'contempt'; break;
+      case 'laughter': emotion = 'joy'; break;
+      case 'pride': emotion = 'anticipation'; break;
+      case 'disinterest': emotion = 'anticipation'; break;
+
       default: emotion = 'annoyance';
     }
 

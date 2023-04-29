@@ -1,23 +1,6 @@
 
 <mat-sidenav-container class="sidenav-container">
 
-  <!-- SIDENAV -->
-
-<!--  <mat-sidenav #drawer class="sidenav" fixedInViewport-->
-<!--               mode="push" opened="false"-->
-<!--  >-->
-<!--&lt;!&ndash;    push&ndash;&gt;-->
-
-<!--    <mat-toolbar>Menu</mat-toolbar>-->
-<!--    <mat-nav-list>-->
-
-<!--      <a mat-list-item routerLink="/" (click)="drawer.close()">New game</a>-->
-<!--      <a mat-list-item routerLink="/login" (click)="drawer.close()">About</a>-->
-<!--      <a mat-list-item routerLink="/kanban" (click)="drawer.close()">Switch to SK</a>-->
-
-<!--    </mat-nav-list>-->
-<!--  </mat-sidenav>-->
-
   <mat-sidenav-content>
 
     <!-- TOP TOOLBAR-->
@@ -28,12 +11,10 @@
               mat-icon-button
               (click)="refreshPage()"
       >
-<!--              (click)="drawer.toggle()"-->
-<!--        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>-->
         <mat-icon aria-label="Side nav toggle icon">replay</mat-icon>
       </button>
 
-      <h2 class="logo" routerLink="/">Alien Negotiator</h2>
+      <h2>Vyjednávač</h2>
 
       <span class="fill-space"></span>
 
@@ -45,7 +26,8 @@
       </button>
 
       <mat-menu #menu="matMenu">
-        <p style="text-align: center">Convince Zoglorp to not destroy the Earth</p>
+        <p class="question-instructions">Presvedč Zoglorpa<br />aby nezničil Zem</p>
+<!--        <p style="text-align: center">Convince Zoglorp to not destroy the Earth</p>-->
 <!--        <a mat-menu-item href=""><span>🌐</span><span>Switch to Slovak</span></a>-->
       </mat-menu>
     </mat-toolbar>

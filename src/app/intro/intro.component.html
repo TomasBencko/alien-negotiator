@@ -1,6 +1,8 @@
 
 <div class="intro-container">
-  <img [src]="'assets/intro/' + introContent[currentIndex].image + '.jpg'" class="intro-image" alt="Intro image" />
+  <div class="intro-image-container">
+    <img [src]="'assets/intro/' + introContent[currentIndex].image + '.jpg'" class="intro-image" alt="Intro image" />
+  </div>
   <div class="intro-text">
     <p *ngFor="let paragraph of introContent[currentIndex].text">{{ paragraph }}</p>
   </div>

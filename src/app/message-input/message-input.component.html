@@ -1,6 +1,7 @@
 <div class="message-input-container">
   <mat-form-field appearance="outline" class="message-input-field">
-    <mat-label>Enter your message</mat-label>
+<!--    <mat-label>Enter your message</mat-label>-->
+    <mat-label>Zadajte svoju správu</mat-label>
     <input #messageInput matInput [(ngModel)]="inputMessage" (keydown.enter)="onSendMessage()" />
   </mat-form-field>
   <button mat-fab color="primary" class="send-button" (click)="onSendMessage()">
