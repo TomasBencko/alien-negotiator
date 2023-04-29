@@ -1,11 +1,13 @@
 import { Component, ElementRef, ViewChild, Renderer2, NgZone } from '@angular/core';
 import { GameService } from '../game.service';
-import {MessageInputComponent} from "../message-input/message-input.component";
+import { MessageInputComponent } from "../message-input/message-input.component";
+import { fadeInAnimation, fadeInTranslateAnimation } from './game.animations';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  styleUrls: ['./game.component.scss'],
+  animations: [fadeInAnimation, fadeInTranslateAnimation]
 })
 export class GameComponent {
   @ViewChild('messageFeed') private messageFeed!: ElementRef;

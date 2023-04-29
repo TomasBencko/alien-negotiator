@@ -15,7 +15,7 @@ export const introContent: IntroStep[] = [
     btnText: 'Pokračovať'
   },
   {
-    image: 'intro',
+    image: 'intro-2',
     text: [
       "Ku našej malej modrej guličke nečakane priletel excentrický mimozemský vodca Zoglorb so svojou vojenskou flotilou, ktorá sa rozprestiera po oblohe ako nevkusný zástup vesmírnych kobyliek."
     ],
@@ -29,7 +29,7 @@ export const introContent: IntroStep[] = [
     btnText: 'Pokračovať'
   },
   {
-    image: 'intro',
+    image: 'intro-2',
     text: [
       "Zem je v úplnom zúfalstve a zmätok by sa dal krájať svetlomečom. No je čas, aby sme sa dali dokopy a urobili to, čo robíme najlepšie–improvizovali."
     ],
@@ -43,7 +43,7 @@ export const introContent: IntroStep[] = [
     btnText: 'Pokračovať'
   },
   {
-    image: 'intro',
+    image: 'intro-2',
     text: [
       "Berte to ako záchrannú akciu.",
       "Nájdite spoločnú reč, či už to bude cez pekné slová, absurdné dohody, alebo masáže s aromatickými olejmi—čokoľvek, čo zabezpečí, že naša planéta zostane v jednom kuse."
@@ -58,7 +58,7 @@ export const introContent: IntroStep[] = [
     btnText: 'Pokračovať'
   },
   {
-    image: 'intro',
+    image: 'intro-2',
     text: [
       "S úprimným pozdravom a veľkým optimizmom,",
       "Váš prezident"

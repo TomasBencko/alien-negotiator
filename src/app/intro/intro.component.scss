@@ -15,14 +15,15 @@
   max-height: 40%;
   position: relative;
   overflow: hidden;
+  content: '';
 
-  &:before {
+  &:after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 120px;
+    height: 180px;
     background-image: linear-gradient(
         to top,
         rgba(#303030, 1) 0%,
@@ -42,13 +43,21 @@
 .intro-text {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 0 1rem;
-  margin: 1.5rem 0.5rem 125px 0.5rem;
+  overflow-x: hidden;
+  padding: 0 1rem 0 1.5rem;
+  margin: 1.5rem 0.5rem 125px 0;
   text-align: center;
   font-weight: 300;
   font-size: 22px;
   line-height: 38px;
   white-space: pre-wrap;
+
+  position: relative;
+
+  .intro-text-inner {
+    position: absolute;
+    top: 0;
+  }
 
   p {
     margin-top: 0;
@@ -80,8 +89,4 @@
     font-size: large;
     font-weight: 300;
   }
-}
-
-.hidden {
-  display: none;
 }

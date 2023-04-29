@@ -2,14 +2,14 @@
   <div class="header">
     <div class="header-content" #header>
       <div class="avatar-wrapper">
-        <img [src]="'assets/alien/' + alienState + '.jpg'" alt="Alien" class="alien-image" />
+        <img @fadeIn [src]="'assets/alien/' + alienState + '.jpg'" alt="Alien" class="alien-image" />
       </div>
     </div>
   </div>
   <div class="message-feed" #messageFeed (scroll)="onScroll()">
     <div class="space-filler"></div>
 <!--    <p class="connection-info">Connection with Zoglorp<br />initiated successfully!</p>-->
-    <p class="connection-info">Spojenie so Zoglorpom<br />úspešne nadviazané!</p>
+    <p @fadeInTranslate class="connection-info">Spojenie so Zoglorpom<br />úspešne nadviazané!</p>
 <!--    <a class="debriefing-info">Click here to see the ebriefeing</a>-->
     <app-message *ngFor="let message of messages"
                  [isUserMessage]="message.isUserMessage"
