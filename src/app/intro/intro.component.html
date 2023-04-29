@@ -1,13 +1,25 @@
-
 <div class="intro-container">
   <div class="intro-image-container">
-    <img [src]="'assets/intro/' + introContent[currentIndex].image + '.jpg'" class="intro-image" alt="Intro image" />
+    <ng-container *ngFor="let intro of introContent; let index = index">
+      <img
+        *ngIf="currentIndex === index"
+        [src]="'assets/intro/' + intro.image + '.jpg'"
+        class="intro-image"
+        [@fadeInOut]="currentIndex === index ? 'in' : 'out'"
+        alt="Intro image"
+      />
+    </ng-container>
   </div>
   <div class="intro-text">
-    <ng-container *ngFor="let step of introContent; let i = index">
-      <div *ngIf="i === currentIndex" @fadeInOut>
-        <p *ngFor="let paragraph of step.text">{{ paragraph }}</p>
-      </div>
+    <ng-container *ngFor="let intro of introContent; let index = index">
+      <ng-container *ngIf="currentIndex === index">
+        <p
+          *ngFor="let paragraph of intro.text"
+          [@slideInOut]="currentIndex === index ? 'in' : 'out'"
+        >
+          {{ paragraph }}
+        </p>
+      </ng-container>
     </ng-container>
   </div>
   <div class="button-container">
