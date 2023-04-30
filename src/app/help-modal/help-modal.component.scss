@@ -1,0 +1,43 @@
+
+.modal-wrapper {
+  min-width: 80vw;
+}
+
+.modal-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 1rem;
+
+  h2 {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .close-button {
+    position: absolute;
+    right: 6px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+mat-dialog-content {
+  padding-top: 0 !important;
+
+  p {
+    text-align: center;
+    line-height: 150%;
+  }
+
+  a {
+    color: #2196f3;
+  }
+
+  hr {
+    opacity: .5;
+  }
+}

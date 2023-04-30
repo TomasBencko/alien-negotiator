@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { HelpModalComponent } from './help-modal/help-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'alien-negotiator';
+
+  constructor(public dialog: MatDialog) {}
+
+  openHelpModal(): void {
+    this.dialog.open(HelpModalComponent);
+  }
 
   refreshPage() {
     window.location.href = '/';

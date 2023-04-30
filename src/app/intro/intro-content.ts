@@ -17,7 +17,7 @@ export const introContent: IntroStep[] = [
   {
     image: 'intro-2B.jpg',
     text: [
-      "Ku našej malej modrej guličke nečakane priletel excentrický mimozemský vodca Zoglorb so svojou vojenskou flotilou, ktorá sa rozprestiera po oblohe ako nevkusný zástup vesmírnych kobyliek."
+      "Ku našej malej modrej guličke nečakane priletel excentrický mimozemský vodca Zoglorp so svojou vojenskou flotilou, ktorá sa rozprestiera po oblohe ako nevkusný zástup vesmírnych kobyliek."
     ],
     btnText: 'Pokračovať'
   },
@@ -45,8 +45,7 @@ export const introContent: IntroStep[] = [
   {
     image: 'intro-2B.jpg',
     text: [
-      "Berte to ako záchrannú akciu.",
-      "Nájdite spoločnú reč, či už to bude cez pekné slová, absurdné dohody, alebo masáže s aromatickými olejmi—čokoľvek, čo zabezpečí, že naša planéta zostane v jednom kuse."
+      "Berte to ako záchrannú akciu. Nájdite spoločnú reč, či už to bude cez pekné slová, absurdné dohody, alebo masáže s aromatickými olejmi—čokoľvek, čo zabezpečí, že naša planéta zostane v jednom kuse."
     ],
     btnText: 'Pokračovať'
   },

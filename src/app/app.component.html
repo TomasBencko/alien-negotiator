@@ -18,18 +18,12 @@
 
       <span class="fill-space"></span>
 
-      <!-- DROPDOWN MENU -->
 
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-<!--        <mat-icon>language</mat-icon>-->
+      <button mat-icon-button (click)="openHelpModal()">
         <mat-icon>help</mat-icon>
       </button>
 
-      <mat-menu #menu="matMenu">
-        <p class="question-instructions">Presvedč Zoglorpa<br />aby nezničil Zem</p>
-<!--        <p style="text-align: center">Convince Zoglorp to not destroy the Earth</p>-->
-<!--        <a mat-menu-item href=""><span>🌐</span><span>Switch to Slovak</span></a>-->
-      </mat-menu>
+
     </mat-toolbar>
 
 <!--    Game-->
@@ -38,5 +32,3 @@
 
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-

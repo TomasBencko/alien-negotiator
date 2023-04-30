@@ -2,14 +2,9 @@ import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GameComponent } from './game/game.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { MessageComponent } from './message/message.component';
-import { MessageInputComponent } from './message-input/message-input.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -22,7 +17,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { GameComponent } from './game/game.component';
+import { MessageComponent } from './message/message.component';
+import { MessageInputComponent } from './message-input/message-input.component';
 import { IntroComponent } from './intro/intro.component';
+import { HelpModalComponent } from './help-modal/help-modal.component';
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import { IntroComponent } from './intro/intro.component';
     GameComponent,
     MessageComponent,
     MessageInputComponent,
-    IntroComponent
+    IntroComponent,
+    HelpModalComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,8 @@ import { IntroComponent } from './intro/intro.component';
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
