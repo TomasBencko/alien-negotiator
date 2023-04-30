@@ -2,7 +2,7 @@
 <div class="intro-container">
   <div class="intro-image-container">
     <ng-container *ngFor="let step of introContent; let i = index">
-      <div *ngIf="i === currentIndex" @fadeInOut>
+      <div *ngIf="i === currentIndex" @fadeInOut style="height: 100%">
         <img [src]="'assets/intro/' + introContent[currentIndex].image" class="intro-image" alt="Intro image" />
       </div>
     </ng-container>

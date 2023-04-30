@@ -22,14 +22,14 @@ export const introContent: IntroStep[] = [
     btnText: 'Pokračovať'
   },
   {
-    image: 'intro-3C.jpg',
+    image: 'intro-3E.jpg',
     text: [
       "Nikto nevie čo možno od Zoglorpa čakať, ale dovoľte mi povedať, že sa nejaví ako niekto, kto by sa prišiel pozrieť, či máme dostatok pečiva na obedom stole."
     ],
     btnText: 'Pokračovať'
   },
   {
-    image: 'intro-4.jpg',
+    image: 'intro-4E.jpg',
     text: [
       "Zem je v úplnom zúfalstve a zmätok by sa dal krájať svetlomečom. No je čas, aby sme sa dali dokopy a urobili to, čo robíme najlepšie–improvizovali."
     ],
@@ -51,7 +51,7 @@ export const introContent: IntroStep[] = [
     btnText: 'Pokračovať'
   },
   {
-    image: 'intro-7B.jpg',
+    image: 'intro-7D.jpg',
     text: [
       "Máme plnú dôveru vo Vaše diplomatické schopnosti. Takže s radosťou vás vysielame na túto neobyčajnú misiu, ktorej úspech je taký neistý ako životnosť žabičky na diaľnici."
     ],
