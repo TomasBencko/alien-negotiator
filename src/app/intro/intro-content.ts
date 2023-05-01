@@ -24,7 +24,7 @@ export const introContent: IntroStep[] = [
   {
     image: 'intro-3.jpg',
     text: [
-      "Nikto nevie čo možno od Zoglorpa čakať, ale dovoľte mi povedať, že sa nejaví ako niekto, kto by sa prišiel pozrieť, či máme dostatok pečiva na obedom stole."
+      "Nikto nevie čo možno od Zoglorpa čakať, ale dovoľte mi povedať, že sa nejaví ako niekto, kto by sa prišiel pozrieť, či máme dostatok pečiva na obednom stole."
     ],
     btnText: 'Pokračovať'
   },
@@ -45,7 +45,8 @@ export const introContent: IntroStep[] = [
   {
     image: 'intro-6.jpg',
     text: [
-      "Berte to ako záchrannú akciu. Nájdite spoločnú reč, či už to bude cez pekné slová, absurdné dohody, alebo masáže s aromatickými olejmi—čokoľvek, čo zabezpečí, že naša planéta zostane v jednom kuse."
+      "Berte to ako záchrannú akciu.",
+      "Nájdite spoločnú reč, či už to bude cez pekné slová, absurdné dohody, alebo masáže s aromatickými olejmi—čokoľvek, čo zabezpečí, že naša planéta zostane v jednom kuse."
     ],
     btnText: 'Pokračovať'
   },
