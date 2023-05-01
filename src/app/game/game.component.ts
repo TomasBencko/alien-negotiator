@@ -1,20 +1,21 @@
-import { Component, ElementRef, ViewChild, Renderer2, NgZone } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer2, NgZone, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 import { MessageInputComponent } from "../message-input/message-input.component";
-import { fadeInAnimation, fadeInTranslateAnimation } from './game.animations';
+import { fadeInAnimation, fadeInTranslateAnimation, endingAnimation } from './game.animations';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
-  animations: [fadeInAnimation, fadeInTranslateAnimation]
+  animations: [fadeInAnimation, fadeInTranslateAnimation, endingAnimation]
 })
-export class GameComponent {
+export class GameComponent implements OnInit {
   @ViewChild('messageFeed') private messageFeed!: ElementRef;
   @ViewChild('header') header!: ElementRef;
   @ViewChild(MessageInputComponent, { read: ElementRef }) inputField!: ElementRef;
   lastScrollTop = 0;
   headerHeight = '30%';
+  gameState = 'in progress';
 
   messages: { isUserMessage: boolean; text: string; emotion?: string }[] = [];
   isTyping: boolean = false;
@@ -26,8 +27,15 @@ export class GameComponent {
     private ngZone: NgZone
   ) {}
 
-  gptRequest(inputMessage: string) {
-    this.messages.push({ isUserMessage: true, text: inputMessage });
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.gptRequest();
+    }, 1500);
+  }
+
+  gptRequest(inputMessage?: string) {
+    this.gameState = 'in progress';
+    if (inputMessage) this.messages.push({ isUserMessage: true, text: inputMessage });
     setTimeout(() => this.scrollToBottom(), 0);
 
     const responseObservable = this.gameService.sendMessageToAI(this.messages);
@@ -96,11 +104,30 @@ export class GameComponent {
 
 
   parseResponse(response: string) {
-    const regex = /\[(.*?)]/;
-    const match = response.match(regex);
-    let emotion = match && match[1] ? match[1] : '';
-    emotion = this.parseEmotion(emotion);
-    const text = response.replace(/\s*\[[^\]]*]/g, '');
+    const regexSquare = /\[(.*?)]/;
+    const matchSquare = response.match(regexSquare);
+    let extractedEmotion = matchSquare && matchSquare[1] ? matchSquare[1] : '';
+
+    const regexCurly = /\{(.*?)}/;
+    const matchCurly = response.match(regexCurly);
+    let gameState = matchCurly && matchCurly[1] ? matchCurly[1] : '';
+    gameState = gameState.toLowerCase().trim();
+
+    if (gameState) {
+      if (gameState === 'accept') {
+        this.gameState = 'success';
+        if (!extractedEmotion) extractedEmotion = 'ecstasy';
+
+      } else if (gameState === 'refuse') {
+        this.gameState = 'fail';
+        if (!extractedEmotion) extractedEmotion = 'aggressiveness';
+      }
+      console.log(`New game state: ${gameState}`);
+    }
+
+    const emotion = this.parseEmotion(extractedEmotion);
+    const text = response.replace(/\s*\[[^\]]*]/g, '').replace(/\s*\{[^}]*}/g, '').trim();
+    console.log(`Parsed emotion: ${extractedEmotion} → ${emotion}`);
 
     return { emotion, text };
   }
@@ -114,13 +141,13 @@ export class GameComponent {
       'terror', 'awe', 'distraction', 'surprise', 'amazement', 'disapproval', 'pensiveness', 'sadness', 'grief',
       'remorse', 'boredom', 'disgust', 'loathing', 'contempt', 'annoyance', 'anger', 'rage', 'aggressiveness',
       'interest', 'anticipation', 'vigilance', 'optimism'
-    ]
+    ];
 
     if (availableEmotions.includes(emotion)) return emotion;
 
     if (['serenity', 'relief', 'relaxation', 'calm', 'peace', 'restfulness', 'repose', 'quietude', 'tranquility', 'comfort', 'calmness', 'peacefulness', 'warmth', 'fulfillment', 'hope', 'humility', 'kindness', 'benevolence', 'altruism', 'compassion', 'empathy', 'sympathy'].includes(emotion)) return 'serenity';
     else if (['joy', 'amusement', 'happy', 'happiness', 'mirth', 'lightheartedness', 'playfulness', 'pride', 'satisfaction', 'contentment', 'bliss', 'generosity'].includes(emotion)) return 'joy';
-    else if (['ecstasy', 'whimsical', 'laughter', 'elation', 'delight', 'zest'].includes(emotion)) return 'ecstasy';
+    else if (['ecstasy', 'whimsical', 'laughter', 'chuckles', 'elation', 'delight', 'zest'].includes(emotion)) return 'ecstasy';
     else if (['love', 'tenderness', 'affection', 'attachment', 'desire'].includes(emotion)) return 'love';
     else if (['acceptance'].includes(emotion)) return 'acceptance';
     else if (['trust', 'faith', 'confidence', 'confident', 'assurance', 'reliance', 'loyalty', 'commitment', 'devotion', 'gratitude', 'appreciation', 'forgiveness'].includes(emotion)) return 'trust';
@@ -130,7 +157,7 @@ export class GameComponent {
     else if (['fear', 'insecurity', 'hesitation', 'timidity', 'caution', 'wariness'].includes(emotion)) return 'fear';
     else if (['terror'].includes(emotion)) return 'terror';
     else if (['awe', 'wonder', 'reverence', 'veneration', 'respect', 'esteem', 'infatuation', 'fascination', 'captivation'].includes(emotion)) return 'awe';
-    else if (['distraction', 'confusion', 'perplexity', 'uncertainty', 'doubt', 'indecision', 'ambivalence', 'hesitancy', 'vacillation', 'disorientation', 'puzzlement'].includes(emotion)) return 'distraction';
+    else if (['distraction', 'confusion', 'perplexity', 'uncertain', 'uncertainty', 'doubt', 'dubious', 'indecision', 'ambivalence', 'hesitancy', 'vacillation', 'disorientation', 'puzzlement'].includes(emotion)) return 'distraction';
     else if (['surprise', 'bewilderment', 'shock', 'disbelief', 'incredulity'].includes(emotion)) return 'surprise';
     else if (['amazement', 'astonishment'].includes(emotion)) return 'amazement';
     else if (['disapproval'].includes(emotion)) return 'disapproval';
@@ -138,7 +165,7 @@ export class GameComponent {
     else if (['sadness', 'sad', 'loneliness', 'melancholy', 'regret', 'disappointment', 'gloom', 'homesickness', 'longing', 'nostalgia'].includes(emotion)) return 'sadness';
     else if (['grief', 'despair', 'sorrow'].includes(emotion)) return 'grief';
     else if (['remorse', 'wistfulness', 'guilt', 'shame', 'embarrassment', 'humiliation', 'mortification', 'chagrin', 'awkwardness', 'self-consciousness', 'vulnerability', 'inadequacy', 'powerlessness', 'helplessness', 'overwhelmed'].includes(emotion)) return 'remorse';
-    else if (['boredom', 'disinterest', 'indifference', 'apathy', 'complacency', 'neutrality', 'detachment', 'unconcern', 'lethargy'].includes(emotion)) return 'boredom';
+    else if (['boredom', 'bored', 'disinterest', 'indifference', 'apathy', 'complacency', 'neutrality', 'detachment', 'unconcern', 'lethargy'].includes(emotion)) return 'boredom';
     else if (['disgust', 'revulsion', 'repulsion', 'nausea', 'abhorrence', 'aversion'].includes(emotion)) return 'disgust';
     else if (['loathing'].includes(emotion)) return 'loathing';
     else if (['contempt', 'sarcasm', 'cynicism', 'disdain', 'arrogance', 'stubbornness', 'bitterness', 'rejection', 'resentment', 'self-pity', 'skepticism', 'pessimism', 'betrayal'].includes(emotion)) return 'contempt';

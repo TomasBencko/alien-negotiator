@@ -17,6 +17,9 @@
                  (scrollToBottomEvent)="scrollToBottom()"
     ></app-message>
 
+    <p @ending *ngIf="gameState === 'success'" class="end-info">Zdá sa, že Zoglorp akceptoval Tvoju ponuku. Dobrá práca!</p>
+    <p @ending *ngIf="gameState === 'fail'" class="end-info">Zdá sa, že Zoglorp odmietol tvoju ponuku. Veľa šťastia nabudúce!</p>
+
     <div class="typing-indicator" *ngIf="isTyping">
       <div class="dot"></div>
       <div class="dot"></div>

@@ -68,7 +68,7 @@
       min-height: 0; //2rem;
     }
 
-    .connection-info, .debriefing-info {
+    .connection-info, .debriefing-info, .end-info {
       text-align: center;
       display: flex;
       align-items: center;
@@ -85,6 +85,10 @@
         line-height: 18px;
         margin-right: 6px;
       }
+    }
+
+    .end-info {
+      margin-top: 1rem !important;
     }
 
     app-message:last-child::ng-deep .message {

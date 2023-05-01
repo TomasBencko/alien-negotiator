@@ -1,8 +1,19 @@
 
-
-
 mat-sidenav-container {
   height: 100%;
+
+  &:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    width: 100%;
+    height: 64px;
+    background-color: #212121;
+
+    @media (max-width: 599px) {
+      height: 56px;
+    }
+  }
 
   mat-sidenav {
     min-width: 33.3vw;
