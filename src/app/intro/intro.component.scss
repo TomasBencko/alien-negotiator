@@ -57,6 +57,7 @@
 
   .intro-text-inner {
     position: absolute;
+    width: 100%;
     top: 0;
   }
 
@@ -75,6 +76,7 @@
   align-items: center;
   position: fixed;
   bottom: 1.5rem;
+  left: 0;
   width: 100%;
 
   .continue-button {
