@@ -13,6 +13,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 The game was created by Tomáš Bencko, while working at [Cassovia Code](https://cassoviacode.com/).
 
+As of 2023-10-19, it is available on the following URL: [alien-negotiator.netlify.app/](alien-negotiator.netlify.app/)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
